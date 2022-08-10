@@ -44,11 +44,24 @@
     }
 
     &__sort {
+        display: flex;
+        flex-direction: row;
         &__sort-button {
+            margin: 5px;
+            display: flex;
+            align-items: center;
             border: none;
+            border-radius: 12px;
+
             img {
                 width: 40px;
                 height: 40px;
+            }
+            &:hover {
+                background-color: lightgray;
+            }
+            &:active {
+                transform: scale(0.9);
             }
         }
     }

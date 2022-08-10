@@ -124,10 +124,24 @@ input {
 .selection__filter .done {
   background-color: #61bd4f;
 }
+.selection__sort {
+  display: flex;
+  flex-direction: row;
+}
 .selection__sort__sort-button {
+  margin: 5px;
+  display: flex;
+  align-items: center;
   border: none;
+  border-radius: 12px;
 }
 .selection__sort__sort-button img {
   width: 40px;
   height: 40px;
+}
+.selection__sort__sort-button:hover {
+  background-color: lightgray;
+}
+.selection__sort__sort-button:active {
+  transform: scale(0.9);
 }
