@@ -1,8 +1,55 @@
-.selection{
-    width: 400px;
-    background-color: $colorPrimary;
+.selection {
+    padding: 20px;
+    width: 100%;
+    background-color: $colorSecondary;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    &__filter{
-        
+    &__filter {
+        border-radius: 10px;
+        margin-bottom: 15px;
+
+        &__filter-button {
+            text-transform: uppercase;
+            font-size: 12px;
+            margin: 5px;
+            border-radius: 12px;
+            width: 80px;
+            height: 25px;
+            border: none;
+            opacity: 0.3;
+            transition: opacity 0.2s ease;
+            &:hover {
+                opacity: 0.6;
+            }
+            &:active {
+                transform: scale(0.9);
+                opacity: 1;
+                color: $colorSecondary;
+            }
+        }
+
+        .todo {
+            background-color: #eb5a46;
+        }
+        .doing {
+            background-color: #f2d600;
+        }
+        .done {
+            background-color: #61bd4f;
+        }
+    }
+
+    &__sort {
+        &__sort-button {
+            border: none;
+            img {
+                width: 40px;
+                height: 40px;
+            }
+        }
     }
 }

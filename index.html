@@ -17,19 +17,21 @@
         <main class="main">
             <!-- selection Area-->
             <section class="selection">
-                <div class="selection__filters">
-                    <div class="selection__filters__title">
-                        <p>Filtre</p>
-                        <div class="delete"></div>
-                    </div>
-                    <div class="selection__filters__button">
-                        <p>Tri</p>
-                        <div class="delete"></div>
-                    </div>
+                <div class="selection__filter">         
+                    <input class="selection__filter__filter-button todo" type="button" value="Todo">
+                    <input class="selection__filter__filter-button doing" type="button" value="Doing">                      
+                    <input class="selection__filter__filter-button done" type="button" value="Done">
                 </div>
                 <div class="selection__sort">
-
-                </div>
+                    <button class="selection__sort__sort-button">
+                        <img src="assets/images/sort_by_time.svg" alt="time sort icon" class="time">
+                    </button>
+                    <button class="selection__sort__sort-button">
+                        <img src="assets/images/sort_by_priority.svg" alt="importance sort icon" class="importance">
+                    </button>                    
+                    <button class="selection__sort__sort-button">
+                        <img src="assets/images/sort_by_alpha.svg" alt="name sort icon" class="name">
+                    </button>
             </section>
             <!-- End selection Area-->
         </main>

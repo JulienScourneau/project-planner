@@ -82,7 +82,52 @@ input {
   transform: scale(0.85);
 }
 
-main {
-  width: 400px;
-  background-color: #8A817C;
+.selection {
+  padding: 20px;
+  width: 100%;
+  background-color: #F4F3EE;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.selection__filter {
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+.selection__filter__filter-button {
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 5px;
+  border-radius: 12px;
+  width: 80px;
+  height: 25px;
+  border: none;
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+}
+.selection__filter__filter-button:hover {
+  opacity: 0.6;
+}
+.selection__filter__filter-button:active {
+  transform: scale(0.9);
+  opacity: 1;
+  color: #F4F3EE;
+}
+.selection__filter .todo {
+  background-color: #eb5a46;
+}
+.selection__filter .doing {
+  background-color: #f2d600;
+}
+.selection__filter .done {
+  background-color: #61bd4f;
+}
+.selection__sort__sort-button {
+  border: none;
+}
+.selection__sort__sort-button img {
+  width: 40px;
+  height: 40px;
 }
