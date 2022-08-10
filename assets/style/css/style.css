@@ -50,3 +50,11 @@ input {
   -webkit-appearance: none;
   border-radius: 0;
 }
+
+nav {
+  color: #F4F3EE;
+  background-color: #2b2d42;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
