@@ -81,3 +81,8 @@ input {
 .nav__button:active {
   transform: scale(0.85);
 }
+
+main {
+  width: 400px;
+  background-color: #8A817C;
+}
