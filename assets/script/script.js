@@ -1,6 +1,6 @@
 document.querySelector("#new-date").valueAsDate = new Date();
 let div = document.getElementById("add_task_container");
-
+let taskList = [];
 class Task {
     constructor(name, description, important, date, tag) {
         this.name = name;
@@ -10,35 +10,35 @@ class Task {
         this.tag = tag;
     }
 
-    get name() {
+    get Name() {
         return this.name;
     }
 
-    set name(name) {
+    set Name(name) {
         this.name = name;
     }
-    get description() {
+    get Description() {
         return this.description;
     }
-    set description(description) {
+    set Description(description) {
         this.description = description;
     }
-    get important() {
+    get Important() {
         return this.important;
     }
-    set important(important) {
+    set Important(important) {
         this.important = important;
     }
-    get date() {
+    get Date() {
         return this.date;
     }
-    set date(date) {
+    set Date(date) {
         this.date = date;
     }
-    get tag() {
+    get Tag() {
         return this.tag;
     }
-    set tag(tag) {
+    set Tag(tag) {
         this.tag = tag;
     }
 }
@@ -50,6 +50,7 @@ const setupEvent = () => {
     document.getElementById("new-task-button").addEventListener("click", () => {
         generateTask();
         displayOrHideAddTask();
+        clearInput();
     });
 
     document.getElementById("add_task_button").addEventListener("click", () => {
@@ -68,20 +69,30 @@ const displayOrHideAddTask = () => {
 };
 
 const clearInput = () => {
-    
-}
+    let textInput = document.getElementsByClassName("text-input");
+    let dateInput = document.getElementById("new-date");
+    let importantInput = document.getElementById("new-important");
+    let tagInput = document.getElementById("new-select");
+    for (const elem of textInput) {
+        elem.value = "";
+    }
+    dateInput.valueAsDate = new Date();
+    importantInput.checked = true ? (importantInput.checked = false) : "";
+    tagInput.value = "To do";
+};
 
-const generateArticle = () => {
+const generateArticle = (task) => {
     let article = document.createElement("article");
     let name = document.createElement("p");
     let description = document.createElement("p");
     let important = document.createElement("img");
     let tag = document.createElement("span");
 
-    name.innerHTML = "Name";
-    description.innerHTML = "description";
+    name.innerHTML = task.name;
+    description.innerHTML = task.description;
     important.src = "assets/images/sort_by_priority.svg";
-    tag.innerHTML = "tag";
+    tag.innerHTML = task.tag;
+    
 
     article.appendChild(name);
     article.appendChild(important);
@@ -91,8 +102,21 @@ const generateArticle = () => {
 };
 
 function generateTask() {
-    let article = generateArticle();
+    let nameInput = document.getElementById("new-name");
+    let descriptionInput = document.getElementById("new-description");
+    let dateInput = document.getElementById("new-date");
+    let importantInput = document.getElementById("new-important");
+    let tagInput = document.getElementById("new-select");
 
+    let task = new Task(
+        nameInput.value,
+        descriptionInput.value,
+        importantInput.checked,
+        dateInput.value,
+        tagInput.value
+    );
+    taskList.push(task)
+    let article = generateArticle(task);
     document.body.children[1].children[1].appendChild(article);
 }
 setupEvent();
