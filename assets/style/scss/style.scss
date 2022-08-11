@@ -15,3 +15,8 @@ $colorAccent: #E0AFA0;
 @import 'selection';
 @import 'addtask';
 @import 'task';
+
+main{
+    background-color: $colorSecondary;
+    height: 100%;
+}
