@@ -1,19 +1,6 @@
 document.querySelector("#new-date").valueAsDate = new Date();
 let div = document.getElementById("add_task_container");
 
-/**
- * Display or hide Add task area
- */
-document.getElementById("add_task_button").addEventListener("click", () => {
-    if (
-        window.getComputedStyle(div, null).getPropertyValue("display") == "none"
-    ) {
-        div.style.display = "block";
-    } else {
-        div.style.display = "none";
-    }
-});
-
 class Task {
     constructor(name, description, important, date, tag) {
         this.name = name;
@@ -56,6 +43,34 @@ class Task {
     }
 }
 
+/**
+ * Display or hide Add task area
+ */
+const setupEvent = () => {
+    document.getElementById("new-task-button").addEventListener("click", () => {
+        generateTask();
+        displayOrHideAddTask();
+    });
+
+    document.getElementById("add_task_button").addEventListener("click", () => {
+        displayOrHideAddTask();
+    });
+};
+
+const displayOrHideAddTask = () => {
+    if (
+        window.getComputedStyle(div, null).getPropertyValue("display") == "none"
+    ) {
+        div.style.display = "block";
+    } else {
+        div.style.display = "none";
+    }
+};
+
+const clearInput = () => {
+    
+}
+
 const generateArticle = () => {
     let article = document.createElement("article");
     let name = document.createElement("p");
@@ -75,9 +90,9 @@ const generateArticle = () => {
     return article;
 };
 
-function generateTask(task) {
+function generateTask() {
     let article = generateArticle();
 
     document.body.children[1].children[1].appendChild(article);
 }
-generateTask();
+setupEvent();
