@@ -7,8 +7,9 @@
     position: relative;
 
     &__head {
+        margin: 0px 15px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
 
         &__name {
@@ -32,7 +33,6 @@
             border-radius: 12px;
             line-height: 0.9em;
             padding-top: 6px;
-            opacity: 0.9;
         }
     }
     &__content {
@@ -52,15 +52,7 @@
             }
             &__img {
                 height: 25px;
-                width: 25px;
-                background-color: rebeccapurple;
-                mask-image: url("/assets/images/sort_by_time.svg");
-                -webkit-mask-size: contain;
-                mask-size: contain;
-                -webkit-mask-position: center;
-                mask-position: center;
-                -webkit-mask-repeat: no-repeat;
-                mask-repeat: no-repeat;
+                width: 25px;                
             }
         }
     }
