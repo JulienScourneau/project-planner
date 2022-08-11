@@ -111,6 +111,7 @@ input {
   border: none;
   opacity: 0.3;
   transition: opacity 0.2s ease;
+  cursor: pointer;
 }
 .selection__filter__filter-button:hover {
   opacity: 0.6;
@@ -139,6 +140,7 @@ input {
   align-items: center;
   border: none;
   border-radius: 12px;
+  cursor: pointer;
 }
 .selection__sort__sort-button img {
   width: 40px;

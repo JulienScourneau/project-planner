@@ -24,6 +24,7 @@
             border: none;
             opacity: 0.3;
             transition: opacity 0.2s ease;
+            cursor: pointer;
             &:hover {
                 opacity: 0.6;
             }
@@ -54,6 +55,7 @@
             align-items: center;
             border: none;
             border-radius: 12px;
+            cursor: pointer;
 
             img {
                 width: 40px;
