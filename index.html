@@ -17,11 +17,11 @@
                 <section class="new-task">
                     <div class="new-task__name">
                         <p class="new-tast__name__text">Nom</p>
-                        <input class="new-task__name__input field text-input" type="text" id='name' >
+                        <input class="new-task__name__input text-input" type="text" id='new-name' >
                     </div>
                     <div class="new-task__date">
                         <p class="new-tast__name__text">Description</p>
-                        <input class="new-task__description__input text-input" type="text" id='description' >
+                        <input class="new-task__description__input text-input" type="text" id='new-description' >
                     </div>
                     <div class="new-task__date">
                         <p class="new-task__date__text task-text">Date</p>
@@ -29,18 +29,18 @@
                     </div>
                     <div class="new-task__important">
                         <p class="new-task__important__text task-text">Important</p>
-                        <input class="new-task__important__input" type="checkbox" name="" id="">
+                        <input class="new-task__important__input" type="checkbox" id="new-important">
                     </div>
                     <div class="new-task__">
                         <p class="new-task__tag__text task-text">Tag</p>
-                        <select name="" id="">
-                            <option value="">To do</option>
-                            <option value="">Doing</option>
-                            <option value="">Done</option>
+                        <select class="input" id="new-select">
+                            <option value="To do">To do</option>
+                            <option value="Doing">Doing</option>
+                            <option value="Done">Done</option>
                         </select>
                     </div>
                     <div class="new-task__add">
-                        <button class="new-task__add__button">Ajouter</button>
+                        <button id="new-task-button" class="new-task__add__button">Ajouter</button>
                     </div>
                 </section>
             </div>
@@ -66,11 +66,26 @@
             </section>
             <!-- End selection Area-->
             <!--Task area-->
-            <section class="tasks">
+            <section>
                 <!--Contains the task list-->
-                <div class="tasks__todo"></div>
-                <div class="tasks__doing"></div>
-                <div class="tasks__done"></div>
+                <article class="task">
+                    <div class="task__head">
+                        <p class="task__head__name">
+                            Arosser les plantes
+                        </p>
+                        <img src="assets/images/sort_by_priority.svg" alt="important icon" class="task__head__img">
+                    </div>
+                    <div class="task__content">
+                        <p class="task__content__description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tristique, nulla euismod sollicitudin facilisis, magna risus condimentum dolor, 
+                            dictum porttitor turpis urna at augue. Vivamus efficitur pulvinar lacus sed mattis.
+                        </p>
+                        <time class="task__content__time">
+                            <p class="task__content__time__text">5 days left</p>
+                            <img src="assets/images/sort_by_time.svg" alt="timer icon" class="task__content__time__img">
+                        </time>
+                    </div>
+                </article>
             </section>
             <!--End task area-->
         </main>
