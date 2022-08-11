@@ -1,0 +1,1 @@
+document.querySelector("#new-date").valueAsDate = new Date();

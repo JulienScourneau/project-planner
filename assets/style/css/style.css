@@ -163,3 +163,91 @@ input {
 .selection__sort__sort-button:active {
   transform: scale(0.9);
 }
+
+.container {
+  padding: 20px;
+  position: absolute;
+  top: 90px;
+  right: 40px;
+  background-color: lightgray;
+  -webkit-animation: slide 1s ease 3.5s forwards;
+          animation: slide 1s ease 3.5s forwards;
+  border-radius: 10px 0px 10px 10px;
+  z-index: 2;
+}
+.container input,
+.container select {
+  width: 100%;
+  font-family: "Barlow", sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border: 0;
+  background-color: lightgray;
+  border-bottom: solid 2px gray;
+}
+.container input:focus,
+.container select:focus {
+  outline: none;
+}
+.container .new-task {
+  font-family: "Barlow", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+.container .new-task::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 100%;
+  top: -12px;
+  right: 0px;
+  border: 0.75rem solid transparent;
+  border-bottom-color: lightgray;
+  transform: rotate(270deg);
+}
+.container .new-task__important {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .new-task__important__input {
+  width: 20px;
+  height: 20px;
+  -webkit-appearance: checkbox;
+     -moz-appearance: checkbox;
+          appearance: checkbox;
+}
+.container .new-task__important__text {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.container .new-task__add {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.container .new-task__add__button {
+  margin-top: 5px;
+  font-family: "Barlow", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}
+.container .new-task__add__button:hover {
+  background-color: lightgray;
+  border: solid 2px white;
+}
+.container .new-task__add__button:active {
+  transform: scale(0.95);
+}
