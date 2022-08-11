@@ -11,9 +11,9 @@
         <header>
             <nav class="nav">
                 <h2 class="nav__title">Project Planner</h2>
-                <button type="button" class="nav__button">New task</button>
+                <button type="button" id="add_task_button" class="nav__button">New task</button>
             </nav>
-            <div class="container">
+            <div id="add_task_container" class="container">
                 <section class="new-task">
                     <div class="new-task__name">
                         <p class="new-tast__name__text">Nom</p>
@@ -65,6 +65,14 @@
                     </button>
             </section>
             <!-- End selection Area-->
+            <!--Task area-->
+            <section class="tasks">
+                <!--Contains the task list-->
+                <div class="tasks__todo"></div>
+                <div class="tasks__doing"></div>
+                <div class="tasks__done"></div>
+            </section>
+            <!--End task area-->
         </main>
         <footer></footer>
         <script src="assets/script/script.js"></script>
