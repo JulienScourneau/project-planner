@@ -83,7 +83,7 @@ const clearInput = () => {
 
 const generateArticle = (task) => {
     let article = document.createElement("article");
-    let name = document.createElement("p");
+    let name = document.createElement("h3");
     let description = document.createElement("p");
     let important = document.createElement("img");
     let tag = document.createElement("span");

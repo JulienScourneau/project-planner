@@ -1,22 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow&display=swap");
 
-$barlow:'Barlow', sans-serif;
+$barlow: "Barlow", sans-serif;
 
 //Colors
-$colorPrimary: #8A817C;
-$colorPrimaryDark : #2b2d42;
-$colorSecondary: #F4F3EE;
-$colorSecondaryDark: #BCB8B1;
-$colorAccent: #E0AFA0;
+$colorPrimary: #8a817c;
+$colorPrimaryDark: #2b2d42;
+$colorSecondary: #f4f3ee;
+$colorSecondaryDark: #bcb8b1;
+$colorAccent: #e0afa0;
+$colorTodo: #eb5a46;
+$colorDoing: #f2d600;
+$colorDone: #61bd4f;
 
 //Import
-@import 'reset';
-@import 'navbar';
-@import 'selection';
-@import 'addtask';
-@import 'task';
+@import "reset";
+@import "navbar";
+@import "selection";
+@import "addtask";
+@import "task";
 
-main{
+main {
     background-color: $colorSecondary;
     height: 100%;
 }

@@ -1,0 +1,90 @@
+.task {
+    background-color: white;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 24px;
+    font-family: $barlow;
+    position: relative;
+
+    &__head {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        &__name {
+            font-size: 24px;
+            margin: 10px 0px;
+        }
+
+        &__img {
+            width: 25px;
+            height: 25px;
+        }
+
+        &__tag {
+            text-align: center;
+            font-size: 14px;
+            position: absolute;
+            right: 15px;
+            top: -12px;
+            width: 50px;
+            height: 25px;
+            border-radius: 12px;
+            line-height: 0.9em;
+            padding-top: 6px;
+            opacity: 0.9;
+        }
+    }
+    &__content {
+        &__description {
+            margin: 10px 15px;
+        }
+
+        &__time {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            &__text {
+                color: gray;
+                margin-right: 5px;
+                margin-bottom: 3px;
+            }
+            &__img {
+                height: 25px;
+                width: 25px;
+                background-color: rebeccapurple;
+                mask-image: url("/assets/images/sort_by_time.svg");
+                -webkit-mask-size: contain;
+                mask-size: contain;
+                -webkit-mask-position: center;
+                mask-position: center;
+                -webkit-mask-repeat: no-repeat;
+                mask-repeat: no-repeat;
+            }
+        }
+    }
+
+    .todo {
+        background-color: $colorTodo;
+    }
+
+    .doing {
+        background-color: $colorDoing;
+    }
+    .done {
+        background-color: $colorDone;
+    }
+}
+
+.task-todo {
+    box-shadow: 0px 0px 5px $colorTodo;
+}
+
+.task-doing {
+    box-shadow: 0px 0px 5px $colorDoing;
+}
+
+.task-done {
+    box-shadow: 0px 0px 5px $colorDone;
+}

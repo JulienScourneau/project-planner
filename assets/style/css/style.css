@@ -54,7 +54,7 @@ input {
 
 .nav {
   font-family: "Barlow", sans-serif;
-  color: #F4F3EE;
+  color: #f4f3ee;
   background-color: #2b2d42;
   padding: 20px;
   display: flex;
@@ -84,7 +84,7 @@ input {
 .nav__button:hover {
   border: solid white 2px;
   background-color: #2b2d42;
-  color: #F4F3EE;
+  color: #f4f3ee;
 }
 .nav__button:active {
   transform: scale(0.85);
@@ -100,7 +100,7 @@ input {
   font-family: "Barlow", sans-serif;
   padding: 20px;
   width: 100%;
-  background-color: #F4F3EE;
+  background-color: #f4f3ee;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
@@ -130,7 +130,7 @@ input {
 .selection__filter__filter-button:active {
   transform: scale(0.9);
   opacity: 1;
-  color: #F4F3EE;
+  color: #f4f3ee;
 }
 .selection__filter .todo {
   background-color: #eb5a46;
@@ -251,4 +251,91 @@ input {
 }
 .container .new-task__add__button:active {
   transform: scale(0.95);
+}
+
+.task {
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 24px;
+  font-family: "Barlow", sans-serif;
+  position: relative;
+}
+.task__head {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.task__head__name {
+  font-size: 24px;
+  margin: 10px 0px;
+}
+.task__head__img {
+  width: 25px;
+  height: 25px;
+}
+.task__head__tag {
+  text-align: center;
+  font-size: 14px;
+  position: absolute;
+  right: 15px;
+  top: -12px;
+  width: 50px;
+  height: 25px;
+  border-radius: 12px;
+  line-height: 0.9em;
+  padding-top: 6px;
+  opacity: 0.9;
+}
+.task__content__description {
+  margin: 10px 15px;
+}
+.task__content__time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.task__content__time__text {
+  color: gray;
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+.task__content__time__img {
+  height: 25px;
+  width: 25px;
+  background-color: rebeccapurple;
+  -webkit-mask-image: url("/assets/images/sort_by_time.svg");
+          mask-image: url("/assets/images/sort_by_time.svg");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.task .todo {
+  background-color: #eb5a46;
+}
+.task .doing {
+  background-color: #f2d600;
+}
+.task .done {
+  background-color: #61bd4f;
+}
+
+.task-todo {
+  box-shadow: 0px 0px 5px #eb5a46;
+}
+
+.task-doing {
+  box-shadow: 0px 0px 5px #f2d600;
+}
+
+.task-done {
+  box-shadow: 0px 0px 5px #61bd4f;
+}
+
+main {
+  background-color: #f4f3ee;
+  height: 100%;
 }
