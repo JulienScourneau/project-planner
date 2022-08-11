@@ -62,13 +62,18 @@ input {
   align-items: center;
 }
 .nav__title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
+}
+@media only screen and (min-width: 375px) {
+  .nav__title {
+    font-size: 24px;
+  }
 }
 .nav__button {
   font-size: 18px;
-  width: 120px;
-  height: 34px;
+  width: 100px;
+  height: 30px;
   border-radius: 12px;
   color: #2b2d42;
   transition: color 0.2s ease-in-out;
@@ -83,6 +88,12 @@ input {
 }
 .nav__button:active {
   transform: scale(0.85);
+}
+@media only screen and (min-width: 375px) {
+  .nav__button {
+    width: 120px;
+    height: 34px;
+  }
 }
 
 .selection {
