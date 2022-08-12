@@ -1,7 +1,7 @@
 document.querySelector("#new-date").valueAsDate = new Date();
 let div = document.getElementById("add_task_container");
 let taskList = [];
-console.log(document.getElementById("new-name").textContent.length);
+let id = 0;
 class Task {
     constructor(name, description, important, date, tag) {
         this.name = name;
@@ -43,9 +43,8 @@ class Task {
         this.tag = tag;
     }
 }
-
 /**
- * Display or hide Add task area
+ * Setup all event listener
  */
 const setupEvent = () => {
     document.getElementById("new-task-button").addEventListener("click", () => {
@@ -61,8 +60,23 @@ const setupEvent = () => {
     document.getElementById("add_task_button").addEventListener("click", () => {
         displayOrHideAddTask();
     });
+
+    document.querySelector("main").addEventListener("click", () => {
+        closeAddTask();
+    });
 };
 
+const closeAddTask = () => {
+    if (
+        window.getComputedStyle(div, null).getPropertyValue("display") ==
+        "block"
+    )
+        div.style.display = "none";
+};
+
+/**
+ * Display or hide Add task area
+ */
 const displayOrHideAddTask = () => {
     if (
         window.getComputedStyle(div, null).getPropertyValue("display") == "none"
@@ -73,9 +87,11 @@ const displayOrHideAddTask = () => {
     }
 };
 
+/**
+ * Clear input selection from newTask div
+ */
 const clearInput = () => {
     let textInput = document.getElementsByClassName("text-input");
-    console.log(textInput.value);
     let dateInput = document.getElementById("new-date");
     let importantInput = document.getElementById("new-important");
     let tagInput = document.getElementById("new-select");
@@ -87,8 +103,15 @@ const clearInput = () => {
     tagInput.value = "To do";
 };
 
+/**
+ * Generate an article with all data pass from user in newTask div
+ * @param {Task} task
+ * @returns
+ */
 const generateArticle = (task) => {
     let article = document.createElement("article");
+    article.id = id;
+    id++;
     article.classList.add("task");
     let divHead = document.createElement("div");
     divHead.classList.add("task__head");
@@ -116,7 +139,7 @@ const generateArticle = (task) => {
     editIcon.classList.add("task__footer__edit");
     editIcon.classList.add("icon");
     editIcon.addEventListener("click", () => {
-        
+        console.log(task.name);
     });
 
     name.innerHTML = task.name;
@@ -128,7 +151,8 @@ const generateArticle = (task) => {
     if (!task.important) {
         important.style.visibility = "hidden";
     }
-    timeText.innerHTML = "x days left";
+
+    timeText.innerHTML = getTimeLeft(task.date) + " days left";
     timeIcon.src = "assets/images/time_left.png";
     editIcon.src = "assets/images/edit.png";
     tag.innerHTML = task.tag;
@@ -161,6 +185,9 @@ const generateArticle = (task) => {
     return article;
 };
 
+/**
+ * Get input from user to create a new task object
+ */
 function generateTask() {
     let nameInput = document.getElementById("new-name");
     let descriptionInput = document.getElementById("new-description");
@@ -179,6 +206,10 @@ function generateTask() {
     let article = generateArticle(task);
     document.body.children[1].children[1].appendChild(article);
 }
+
+/**
+ * Show snackbar
+ */
 const displaySnackBar = () => {
     let snackbar = document.getElementById("snackbar");
     snackbar.className = "show";
@@ -187,4 +218,25 @@ const displaySnackBar = () => {
     }, 3000);
 };
 
+const editTask = (id) => {
+    displayOrHideAddTask();
+    let task = taskList[id];
+};
 setupEvent();
+
+/**
+ *
+ * @param {Task.date} date
+ */
+const getTimeLeft = (date) => {
+    let today = new Date();
+    let newDate = new Date(date);
+    let day = newDate.getTime() - today.getTime();
+    console.log(day);
+    if (day < 0) {
+        console.log("if");
+        return "1";
+    } else {
+        return Math.ceil(day / (1000 * 3600 * 24));
+    }
+};
