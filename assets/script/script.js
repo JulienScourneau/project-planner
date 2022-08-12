@@ -61,7 +61,7 @@ const setupEvent = () => {
         displayOrHideAddTask();
     });
 
-    document.querySelector("main").addEventListener("click", () => {
+    document.getElementsByClassName("task-container")[0].addEventListener("click", () => {
         closeAddTask();
     });
 };
@@ -72,6 +72,15 @@ const closeAddTask = () => {
         "block"
     )
         div.style.display = "none";
+};
+
+const openAddTask = () => {
+    let addDiv = document.getElementById("add_task_container");
+    if (addDiv.style.display == "none") {
+        console.log(addDiv);
+        addDiv.style.display = "block";
+        console.log(addDiv.style.display);
+    }
 };
 
 /**
@@ -139,7 +148,7 @@ const generateArticle = (task) => {
     editIcon.classList.add("task__footer__edit");
     editIcon.classList.add("icon");
     editIcon.addEventListener("click", () => {
-        console.log(task.name);
+        editTask(article.id);
     });
 
     name.innerHTML = task.name;
@@ -218,12 +227,6 @@ const displaySnackBar = () => {
     }, 3000);
 };
 
-const editTask = (id) => {
-    displayOrHideAddTask();
-    let task = taskList[id];
-};
-setupEvent();
-
 /**
  *
  * @param {Task.date} date
@@ -232,11 +235,16 @@ const getTimeLeft = (date) => {
     let today = new Date();
     let newDate = new Date(date);
     let day = newDate.getTime() - today.getTime();
-    console.log(day);
     if (day < 0) {
-        console.log("if");
         return "1";
     } else {
         return Math.ceil(day / (1000 * 3600 * 24));
     }
 };
+
+const editTask = (id) => {
+    setTimeout(openAddTask,1)
+    let task = taskList[id];
+
+};
+setupEvent();
