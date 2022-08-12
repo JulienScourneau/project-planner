@@ -52,6 +52,13 @@ input {
   border-radius: 0;
 }
 
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+}
+
 .nav {
   font-family: "Barlow", sans-serif;
   color: #f4f3ee;
@@ -400,4 +407,5 @@ input {
 main {
   background-color: #f4f3ee;
   height: 100%;
+  margin-top: 70px;
 }
