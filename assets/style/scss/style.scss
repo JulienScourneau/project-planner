@@ -18,6 +18,8 @@ $colorDone: #61bd4f;
 @import "selection";
 @import "addtask";
 @import "task";
+@import "snackbar";
+
 
 main {
     background-color: $colorSecondary;

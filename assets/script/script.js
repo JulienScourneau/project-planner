@@ -1,7 +1,7 @@
 document.querySelector("#new-date").valueAsDate = new Date();
 let div = document.getElementById("add_task_container");
 let taskList = [];
-console.log(document.getElementById('new-name').textContent);
+console.log(document.getElementById("new-name").textContent.length);
 class Task {
     constructor(name, description, important, date, tag) {
         this.name = name;
@@ -49,10 +49,13 @@ class Task {
  */
 const setupEvent = () => {
     document.getElementById("new-task-button").addEventListener("click", () => {
-        if(document.getElementById('new-name').textContent !== ""){
+        if (document.getElementById("new-name").textContent.length !== 0) {
+            console.log("If");
             generateTask();
-        displayOrHideAddTask();
-        clearInput();
+            displayOrHideAddTask();
+            clearInput();
+        } else {
+            displaySnackBar();
         }
     });
 
@@ -73,6 +76,7 @@ const displayOrHideAddTask = () => {
 
 const clearInput = () => {
     let textInput = document.getElementsByClassName("text-input");
+    console.log(textInput.value);
     let dateInput = document.getElementById("new-date");
     let importantInput = document.getElementById("new-important");
     let tagInput = document.getElementById("new-select");
@@ -109,23 +113,23 @@ const generateArticle = (task) => {
     name.innerHTML = task.name;
     description.innerHTML = task.description;
     important.src = "assets/images/sort_by_priority.svg";
-    if(!task.important){
-        important.style.visibility = "hidden"
+    if (!task.important) {
+        important.style.visibility = "hidden";
     }
     tag.innerHTML = task.tag;
-    timeIcon.src = "assets/images/time_left.png"
+    timeIcon.src = "assets/images/time_left.png";
     switch (task.tag) {
         case "Doing":
-            article.classList.add('task-doing')
-            tag.classList.add('doing')
+            article.classList.add("task-doing");
+            tag.classList.add("doing");
             break;
         case "Done":
-            article.classList.add('task-done')
-            tag.classList.add('done')
+            article.classList.add("task-done");
+            tag.classList.add("done");
             break;
         default:
-            article.classList.add('task-todo')
-            tag.classList.add('todo')
+            article.classList.add("task-todo");
+            tag.classList.add("todo");
             break;
     }
 
@@ -159,4 +163,12 @@ function generateTask() {
     let article = generateArticle(task);
     document.body.children[1].children[1].appendChild(article);
 }
+const displaySnackBar = () => {
+    let snackbar = document.getElementById("snackbar");
+    snackbar.className = "show";
+    setTimeout(function () {
+        snackbar.className = snackbar.className.replace("show", "");
+    }, 3000);
+};
+
 setupEvent();
