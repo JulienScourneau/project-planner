@@ -1,6 +1,7 @@
 document.querySelector("#new-date").valueAsDate = new Date();
 let div = document.getElementById("add_task_container");
 let taskList = [];
+console.log(document.getElementById('new-name').textContent);
 class Task {
     constructor(name, description, important, date, tag) {
         this.name = name;
@@ -48,9 +49,11 @@ class Task {
  */
 const setupEvent = () => {
     document.getElementById("new-task-button").addEventListener("click", () => {
-        generateTask();
+        if(document.getElementById('new-name').textContent !== ""){
+            generateTask();
         displayOrHideAddTask();
         clearInput();
+        }
     });
 
     document.getElementById("add_task_button").addEventListener("click", () => {
@@ -83,21 +86,58 @@ const clearInput = () => {
 
 const generateArticle = (task) => {
     let article = document.createElement("article");
+    article.classList.add("task");
+    let divHead = document.createElement("div");
+    divHead.classList.add("task__head");
+    let divContent = document.createElement("div");
+    divContent.classList.add("task__content");
     let name = document.createElement("h3");
+    name.classList.add("task__head__name");
     let description = document.createElement("p");
+    description.classList.add("task__content__description");
     let important = document.createElement("img");
+    important.classList.add("task__head__img");
     let tag = document.createElement("span");
+    tag.classList.add("task__head__tag");
+    let time = document.createElement("time");
+    time.classList.add("task__content__time");
+    let timeText = document.createElement("p");
+    timeText.classList.add("task__content__time__text");
+    let timeIcon = document.createElement("img");
+    timeIcon.classList.add("task__content__time__img");
 
     name.innerHTML = task.name;
     description.innerHTML = task.description;
     important.src = "assets/images/sort_by_priority.svg";
+    if(!task.important){
+        important.style.visibility = "hidden"
+    }
     tag.innerHTML = task.tag;
-    
+    timeIcon.src = "assets/images/time_left.png"
+    switch (task.tag) {
+        case "Doing":
+            article.classList.add('task-doing')
+            tag.classList.add('doing')
+            break;
+        case "Done":
+            article.classList.add('task-done')
+            tag.classList.add('done')
+            break;
+        default:
+            article.classList.add('task-todo')
+            tag.classList.add('todo')
+            break;
+    }
 
-    article.appendChild(name);
-    article.appendChild(important);
-    article.appendChild(description);
-    article.appendChild(tag);
+    divHead.appendChild(name);
+    divHead.appendChild(important);
+    divHead.appendChild(tag);
+    divContent.appendChild(description);
+    time.appendChild(timeText);
+    time.appendChild(timeIcon);
+    divContent.appendChild(time);
+    article.appendChild(divHead);
+    article.appendChild(divContent);
     return article;
 };
 
@@ -115,7 +155,7 @@ function generateTask() {
         dateInput.value,
         tagInput.value
     );
-    taskList.push(task)
+    taskList.push(task);
     let article = generateArticle(task);
     document.body.children[1].children[1].appendChild(article);
 }

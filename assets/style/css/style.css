@@ -301,8 +301,8 @@ input {
   margin-bottom: 3px;
 }
 .task__content__time__img {
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 }
 .task .todo {
   background-color: #eb5a46;
