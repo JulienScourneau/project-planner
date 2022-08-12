@@ -64,6 +64,11 @@ const setupEvent = () => {
     document.getElementsByClassName("task-container")[0].addEventListener("click", () => {
         closeAddTask();
     });
+
+
+    document.getElementById('').addEventListener("click", () =>{
+        
+    })
 };
 
 const closeAddTask = () => {
