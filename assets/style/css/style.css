@@ -260,6 +260,11 @@ header {
   transform: scale(0.95);
 }
 
+.task-container {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
 .task {
   background-color: white;
   margin: 20px;
@@ -408,4 +413,5 @@ main {
   background-color: #f4f3ee;
   height: 100%;
   margin-top: 70px;
+  margin-bottom: 20px;
 }
