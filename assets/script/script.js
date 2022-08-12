@@ -49,8 +49,9 @@ class Task {
  */
 const setupEvent = () => {
     document.getElementById("new-task-button").addEventListener("click", () => {
-        if (document.getElementById("new-name").textContent.length !== 0) {
-            console.log("If");
+        let name
+
+        if (document.getElementById("new-name").value !== "") {
             generateTask();
             displayOrHideAddTask();
             clearInput();
@@ -97,6 +98,7 @@ const generateArticle = (task) => {
     divContent.classList.add("task__content");
     let name = document.createElement("h3");
     name.classList.add("task__head__name");
+    name.contentEditable = "false"
     let description = document.createElement("p");
     description.classList.add("task__content__description");
     let important = document.createElement("img");
