@@ -49,8 +49,6 @@ class Task {
  */
 const setupEvent = () => {
     document.getElementById("new-task-button").addEventListener("click", () => {
-        let name
-
         if (document.getElementById("new-name").value !== "") {
             generateTask();
             displayOrHideAddTask();
@@ -96,9 +94,11 @@ const generateArticle = (task) => {
     divHead.classList.add("task__head");
     let divContent = document.createElement("div");
     divContent.classList.add("task__content");
+    let divfooter = document.createElement("div");
+    divfooter.classList.add("task__footer");
     let name = document.createElement("h3");
     name.classList.add("task__head__name");
-    name.contentEditable = "false"
+    name.contentEditable = "false";
     let description = document.createElement("p");
     description.classList.add("task__content__description");
     let important = document.createElement("img");
@@ -106,20 +106,32 @@ const generateArticle = (task) => {
     let tag = document.createElement("span");
     tag.classList.add("task__head__tag");
     let time = document.createElement("time");
-    time.classList.add("task__content__time");
+    time.classList.add("task__footer__time");
     let timeText = document.createElement("p");
-    timeText.classList.add("task__content__time__text");
+    timeText.classList.add("task__footer__time__text");
     let timeIcon = document.createElement("img");
-    timeIcon.classList.add("task__content__time__img");
+    timeIcon.classList.add("task__footer__time__icon");
+    timeIcon.classList.add("icon");
+    let editIcon = document.createElement("img");
+    editIcon.classList.add("task__footer__edit");
+    editIcon.classList.add("icon");
+    editIcon.addEventListener("click", () => {
+        
+    });
 
     name.innerHTML = task.name;
     description.innerHTML = task.description;
+    if ((task.description.value = "")) {
+        description.style.display = "none";
+    }
     important.src = "assets/images/sort_by_priority.svg";
     if (!task.important) {
         important.style.visibility = "hidden";
     }
-    tag.innerHTML = task.tag;
+    timeText.innerHTML = "x days left";
     timeIcon.src = "assets/images/time_left.png";
+    editIcon.src = "assets/images/edit.png";
+    tag.innerHTML = task.tag;
     switch (task.tag) {
         case "Doing":
             article.classList.add("task-doing");
@@ -141,9 +153,11 @@ const generateArticle = (task) => {
     divContent.appendChild(description);
     time.appendChild(timeText);
     time.appendChild(timeIcon);
-    divContent.appendChild(time);
+    divfooter.appendChild(time);
+    divfooter.appendChild(editIcon);
     article.appendChild(divHead);
     article.appendChild(divContent);
+    article.appendChild(divfooter);
     return article;
 };
 

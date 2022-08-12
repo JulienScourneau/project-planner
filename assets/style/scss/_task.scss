@@ -39,10 +39,16 @@
         &__description {
             margin: 10px 15px;
         }
+    }
 
+    &__footer{
+        display: flex;
+        padding: 0px 15px;
+        justify-content: space-between;
+        align-items: center;
+        
         &__time {
             display: flex;
-            justify-content: flex-end;
             align-items: center;
 
             &__text {
@@ -50,10 +56,12 @@
                 margin-right: 5px;
                 margin-bottom: 3px;
             }
-            &__img {
-                height: 20px;
-                width: 20px;                
-            }
+            
+        }
+        
+        .icon {
+            height: 20px;
+            width: 20px;                
         }
     }
 

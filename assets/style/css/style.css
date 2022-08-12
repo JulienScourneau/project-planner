@@ -290,17 +290,22 @@ input {
 .task__content__description {
   margin: 10px 15px;
 }
-.task__content__time {
+.task__footer {
   display: flex;
-  justify-content: flex-end;
+  padding: 0px 15px;
+  justify-content: space-between;
   align-items: center;
 }
-.task__content__time__text {
+.task__footer__time {
+  display: flex;
+  align-items: center;
+}
+.task__footer__time__text {
   color: gray;
   margin-right: 5px;
   margin-bottom: 3px;
 }
-.task__content__time__img {
+.task__footer .icon {
   height: 20px;
   width: 20px;
 }
