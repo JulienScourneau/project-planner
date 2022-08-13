@@ -48,12 +48,15 @@ class Task {
  */
 const setupEvent = () => {
     document.getElementById("new-task-button").addEventListener("click", () => {
+
+        if(document.getElementById("new-date"))
+
         if (document.getElementById("new-name").value !== "") {
             generateTask();
             displayOrHideAddTask();
             clearInput();
         } else {
-            displaySnackBar();
+            displaySnackBar("Ajoutez un nom");
         }
     });
 
@@ -61,14 +64,14 @@ const setupEvent = () => {
         displayOrHideAddTask();
     });
 
-    document.getElementsByClassName("task-container")[0].addEventListener("click", () => {
-        closeAddTask();
-    });
+    document
+        .getElementsByClassName("task-container")[0]
+        .addEventListener("click", () => {
+            closeAddTask();
+        });
 
-
-    document.getElementById('').addEventListener("click", () =>{
-        
-    })
+    // document.getElementById('').addEventListener("click", () =>{
+    // })
 };
 
 const closeAddTask = () => {
@@ -82,9 +85,7 @@ const closeAddTask = () => {
 const openAddTask = () => {
     let addDiv = document.getElementById("add_task_container");
     if (addDiv.style.display == "none") {
-        console.log(addDiv);
         addDiv.style.display = "block";
-        console.log(addDiv.style.display);
     }
 };
 
@@ -224,22 +225,26 @@ function generateTask() {
 /**
  * Show snackbar
  */
-const displaySnackBar = () => {
+const displaySnackBar = (message) => {
     let snackbar = document.getElementById("snackbar");
     snackbar.className = "show";
+    snackbar.innerHTML = message;
     setTimeout(function () {
         snackbar.className = snackbar.className.replace("show", "");
     }, 3000);
 };
 
 /**
- *
- * @param {Task.date} date
+ *Get day beetween select day and today
+ * @param {Date} date
  */
 const getTimeLeft = (date) => {
     let today = new Date();
     let newDate = new Date(date);
     let day = newDate.getTime() - today.getTime();
+    console.log();
+    if (Math.ceil(day / (1000 * 3600 * 24)))
+        return "0";
     if (day < 0) {
         return "1";
     } else {
@@ -248,8 +253,7 @@ const getTimeLeft = (date) => {
 };
 
 const editTask = (id) => {
-    setTimeout(openAddTask,1)
+    setTimeout(openAddTask, 1);
     let task = taskList[id];
-
 };
 setupEvent();
