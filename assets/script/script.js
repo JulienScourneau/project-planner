@@ -2,6 +2,13 @@ document.querySelector("#new-date").valueAsDate = new Date();
 let div = document.getElementById("add_task_container");
 let taskList = [];
 let id = 0;
+let taskButton = document.getElementById("new-task-button");
+let nameInput = document.getElementById("new-name");
+let descriptionInput = document.getElementById("new-description");
+let dateInput = document.getElementById("new-date");
+let importantInput = document.getElementById("new-important");
+let tagInput = document.getElementById("new-select");
+
 class Task {
     constructor(name, description, important, date, tag) {
         this.name = name;
@@ -11,56 +18,32 @@ class Task {
         this.tag = tag;
     }
 
-    get Name() {
-        return this.name;
-    }
-
-    set Name(name) {
-        this.name = name;
-    }
-    get Description() {
-        return this.description;
-    }
-    set Description(description) {
-        this.description = description;
-    }
-    get Important() {
-        return this.important;
-    }
-    set Important(important) {
-        this.important = important;
-    }
-    get Date() {
-        return this.date;
-    }
-    set Date(date) {
-        this.date = date;
-    }
-    get Tag() {
-        return this.tag;
-    }
-    set Tag(tag) {
-        this.tag = tag;
-    }
+    
 }
 /**
  * Setup all event listener
  */
 const setupEvent = () => {
     document.getElementById("new-task-button").addEventListener("click", () => {
-
-        if(document.getElementById("new-date"))
-
-        if (document.getElementById("new-name").value !== "") {
-            generateTask();
-            displayOrHideAddTask();
-            clearInput();
+        if (taskButton.innerHTML == "Sauvegarder") {
+            console.log("Save");
         } else {
-            displaySnackBar("Ajoutez un nom");
+            if (document.getElementById("new-name").value == "") {
+                displaySnackBar("Ajoutez un nom");
+            } else if (
+                getTimeLeft(document.getElementById("new-date").value) == "0"
+            ) {
+                displaySnackBar("Date invalide");
+            } else {
+                generateTask();
+                displayOrHideAddTask();
+                
+            }
         }
     });
 
     document.getElementById("add_task_button").addEventListener("click", () => {
+        taskButton.innerHTML = "Ajouter";
         displayOrHideAddTask();
     });
 
@@ -69,9 +52,6 @@ const setupEvent = () => {
         .addEventListener("click", () => {
             closeAddTask();
         });
-
-    // document.getElementById('').addEventListener("click", () =>{
-    // })
 };
 
 const closeAddTask = () => {
@@ -84,6 +64,7 @@ const closeAddTask = () => {
 
 const openAddTask = () => {
     let addDiv = document.getElementById("add_task_container");
+    taskButton.innerHTML = "Sauvegarder";
     if (addDiv.style.display == "none") {
         addDiv.style.display = "block";
     }
@@ -100,6 +81,7 @@ const displayOrHideAddTask = () => {
     } else {
         div.style.display = "none";
     }
+    clearInput();
 };
 
 /**
@@ -107,9 +89,6 @@ const displayOrHideAddTask = () => {
  */
 const clearInput = () => {
     let textInput = document.getElementsByClassName("text-input");
-    let dateInput = document.getElementById("new-date");
-    let importantInput = document.getElementById("new-important");
-    let tagInput = document.getElementById("new-select");
     for (const elem of textInput) {
         elem.value = "";
     }
@@ -124,6 +103,7 @@ const clearInput = () => {
  * @returns
  */
 const generateArticle = (task) => {
+    //Generate Dom element
     let article = document.createElement("article");
     article.id = id;
     id++;
@@ -153,10 +133,13 @@ const generateArticle = (task) => {
     let editIcon = document.createElement("img");
     editIcon.classList.add("task__footer__edit");
     editIcon.classList.add("icon");
+
+    //Edit event
     editIcon.addEventListener("click", () => {
-        editTask(article.id);
+        openEditTask(article.id);
     });
 
+    //Set data
     name.innerHTML = task.name;
     description.innerHTML = task.description;
     if ((task.description.value = "")) {
@@ -166,7 +149,6 @@ const generateArticle = (task) => {
     if (!task.important) {
         important.style.visibility = "hidden";
     }
-
     timeText.innerHTML = getTimeLeft(task.date) + " days left";
     timeIcon.src = "assets/images/time_left.png";
     editIcon.src = "assets/images/edit.png";
@@ -186,6 +168,7 @@ const generateArticle = (task) => {
             break;
     }
 
+    //Add the elements in the article
     divHead.appendChild(name);
     divHead.appendChild(important);
     divHead.appendChild(tag);
@@ -204,12 +187,6 @@ const generateArticle = (task) => {
  * Get input from user to create a new task object
  */
 function generateTask() {
-    let nameInput = document.getElementById("new-name");
-    let descriptionInput = document.getElementById("new-description");
-    let dateInput = document.getElementById("new-date");
-    let importantInput = document.getElementById("new-important");
-    let tagInput = document.getElementById("new-select");
-
     let task = new Task(
         nameInput.value,
         descriptionInput.value,
@@ -235,25 +212,31 @@ const displaySnackBar = (message) => {
 };
 
 /**
- *Get day beetween select day and today
+ *Get days left between select day and today
  * @param {Date} date
  */
 const getTimeLeft = (date) => {
     let today = new Date();
     let newDate = new Date(date);
     let day = newDate.getTime() - today.getTime();
-    console.log();
-    if (Math.ceil(day / (1000 * 3600 * 24)))
-        return "0";
-    if (day < 0) {
-        return "1";
-    } else {
-        return Math.ceil(day / (1000 * 3600 * 24));
-    }
+
+    if (Math.ceil(day / (1000 * 3600 * 24)) <= -1) return "0";
+    if (Math.ceil(day / (1000 * 3600 * 24)) <= 0) return "1";
+    return Math.ceil(day / (1000 * 3600 * 24));
 };
 
-const editTask = (id) => {
+/**
+ * Open the window for editing the selected task
+ * @param {int} id
+ */
+const openEditTask = (id) => {
     setTimeout(openAddTask, 1);
     let task = taskList[id];
+    nameInput.value = task.name;
+    descriptionInput.value = task.description;
+    dateInput.valueAsDate = new Date(task.date);
+    importantInput.checked = task.important;
+    tagInput.value = task.tag;
 };
+
 setupEvent();
