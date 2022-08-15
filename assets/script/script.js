@@ -2,6 +2,7 @@ document.querySelector("#new-date").valueAsDate = new Date();
 let div = document.getElementById("add_task_container");
 let taskList = [];
 let id = 0;
+let taskId;
 let taskButton = document.getElementById("new-task-button");
 let nameInput = document.getElementById("new-name");
 let descriptionInput = document.getElementById("new-description");
@@ -17,27 +18,27 @@ class Task {
         this.date = date;
         this.tag = tag;
     }
-
-    
 }
+
 /**
  * Setup all event listener
  */
 const setupEvent = () => {
     document.getElementById("new-task-button").addEventListener("click", () => {
-        if (taskButton.innerHTML == "Sauvegarder") {
-            console.log("Save");
+        if (document.getElementById("new-name").value == "") {
+            displaySnackBar("Ajoutez un nom");
+        } else if (
+            getTimeLeft(document.getElementById("new-date").value) == "0"
+        ) {
+            displaySnackBar("Date invalide");
         } else {
-            if (document.getElementById("new-name").value == "") {
-                displaySnackBar("Ajoutez un nom");
-            } else if (
-                getTimeLeft(document.getElementById("new-date").value) == "0"
-            ) {
-                displaySnackBar("Date invalide");
+            if (taskButton.innerHTML == "Sauvegarder") {
+                console.log("Save");
+                editTask(taskId);
+                displayOrHideAddTask();
             } else {
                 generateTask();
                 displayOrHideAddTask();
-                
             }
         }
     });
@@ -180,7 +181,7 @@ const generateArticle = (task) => {
     article.appendChild(divHead);
     article.appendChild(divContent);
     article.appendChild(divfooter);
-    return article;
+    document.getElementById("task-container").appendChild(article);
 };
 
 /**
@@ -195,8 +196,7 @@ function generateTask() {
         tagInput.value
     );
     taskList.push(task);
-    let article = generateArticle(task);
-    document.body.children[1].children[1].appendChild(article);
+    generateArticle(task);
 }
 
 /**
@@ -231,12 +231,53 @@ const getTimeLeft = (date) => {
  */
 const openEditTask = (id) => {
     setTimeout(openAddTask, 1);
-    let task = taskList[id];
-    nameInput.value = task.name;
-    descriptionInput.value = task.description;
-    dateInput.valueAsDate = new Date(task.date);
-    importantInput.checked = task.important;
-    tagInput.value = task.tag;
+    taskId = id;
+    let updatedTask = taskList[id];
+    nameInput.value = updatedTask.name;
+    descriptionInput.value = updatedTask.description;
+    dateInput.valueAsDate = new Date(updatedTask.date);
+    importantInput.checked = updatedTask.important;
+    tagInput.value = updatedTask.tag;
+};
+
+const editTask = (id) => {
+    let article = document.getElementById(id);
+    article.querySelector("h3").innerHTML = nameInput.value;
+    importantInput.checked
+        ? (article.getElementsByClassName(
+              "task__head__img"
+          )[0].style.visibility = "visible")
+        : (article.getElementsByClassName(
+              "task__head__img"
+          )[0].style.visibility = "hidden");
+    console.log(tagInput);
+
+    switch (tagInput.value) {
+        case "Doing":
+            article.className = "task task-doing";
+            article.querySelector("span").className = "task__head__tag doing";
+            article.querySelector("span").innerHTML = "Doing";
+            break;
+        case "Done":
+            article.className = "task task-done";
+            article.querySelector("span").className = "task__head__tag done";
+            article.querySelector("span").innerHTML = "Done";
+            break;
+        default:
+            article.className = "task task-todo";
+            article.querySelector("span").className = "task__head__tag todo";
+            article.querySelector("span").innerHTML = "to do";
+            break;
+    }
+
+    if (descriptionInput == "") {
+        article.querySelector("p").style.display = "none";
+    } else {
+        article.querySelector("p").innerHTML = descriptionInput.value;
+        article.querySelector("p").style.display = "block";
+    }
+
+    article.getElementsByClassName('task__footer__time__text')[0].innerHTML = getTimeLeft(dateInput.value) + " days left";
 };
 
 setupEvent();
