@@ -240,6 +240,10 @@ const openEditTask = (id) => {
     tagInput.value = updatedTask.tag;
 };
 
+/**
+ * Save task with new data
+ * @param {int} id 
+ */
 const editTask = (id) => {
     let article = document.getElementById(id);
     article.querySelector("h3").innerHTML = nameInput.value;
