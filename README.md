@@ -1,3 +1,3 @@
 # project-planner
 
-#### Link: 
+#### Link: https://julienscourneau.github.io/project-planner/
