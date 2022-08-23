@@ -108,32 +108,17 @@ const generateArticle = (task) => {
     let article = document.createElement("article");
     article.id = id;
     id++;
-    article.classList.add("task");
     let divHead = document.createElement("div");
-    divHead.classList.add("task__head");
     let divContent = document.createElement("div");
-    divContent.classList.add("task__content");
     let divfooter = document.createElement("div");
-    divfooter.classList.add("task__footer");
     let name = document.createElement("h3");
-    name.classList.add("task__head__name");
-    name.contentEditable = "false";
     let description = document.createElement("p");
-    description.classList.add("task__content__description");
     let important = document.createElement("img");
-    important.classList.add("task__head__img");
     let tag = document.createElement("span");
-    tag.classList.add("task__head__tag");
     let time = document.createElement("time");
-    time.classList.add("task__footer__time");
     let timeText = document.createElement("p");
-    timeText.classList.add("task__footer__time__text");
     let timeIcon = document.createElement("img");
-    timeIcon.classList.add("task__footer__time__icon");
-    timeIcon.classList.add("icon");
     let editIcon = document.createElement("img");
-    editIcon.classList.add("task__footer__edit");
-    editIcon.classList.add("icon");
 
     //Edit event
     editIcon.addEventListener("click", () => {
@@ -154,20 +139,6 @@ const generateArticle = (task) => {
     timeIcon.src = "assets/images/time_left.png";
     editIcon.src = "assets/images/edit.png";
     tag.innerHTML = task.tag;
-    switch (task.tag) {
-        case "Doing":
-            article.classList.add("task-doing");
-            tag.classList.add("doing");
-            break;
-        case "Done":
-            article.classList.add("task-done");
-            tag.classList.add("done");
-            break;
-        default:
-            article.classList.add("task-todo");
-            tag.classList.add("todo");
-            break;
-    }
 
     //Add the elements in the article
     divHead.appendChild(name);
@@ -181,8 +152,39 @@ const generateArticle = (task) => {
     article.appendChild(divHead);
     article.appendChild(divContent);
     article.appendChild(divfooter);
+    setupClass(article, task.tag);
     document.getElementById("task-container").appendChild(article);
+    article.firstChild;
 };
+
+function setupClass(article, tag) {
+    article.classList.add("task");
+    article.children[0].classList.add("task__head");
+    article.children[0].firstChild.classList.add("task__head__name");
+    article.children[0].children[1].classList.add("task__head__img");
+    article.children[1].classList.add("task__content");
+    article.children[1].firstChild.classList.add("task__content__description");
+    article.children[2].classList.add("task__footer");
+    article.children[2].firstChild.classList.add("task__footer__time");
+    article.children[2].firstChild.firstChild.classList.add("task__footer__time__text");
+    article.children[2].firstChild.lastChild.className = "task__footer__time__icon icon";
+    article.children[2].lastChild.className = "task__footer__icon icon";
+
+    switch (tag) {
+        case "Doing":
+            article.classList.add("task-doing");
+            article.children[0].lastChild.className = "task__head__tag doing"
+            break;
+        case "Done":
+            article.classList.add("task-done");
+            article.children[0].lastChild.className = "task__head__tag done"
+            break;
+        default:
+            article.classList.add("task-todo");
+            article.children[0].lastChild.className = "task__head__tag todo"
+            break;
+    }
+}
 
 /**
  * Get input from user to create a new task object
@@ -277,7 +279,8 @@ const editTask = (id) => {
         article.querySelector("p").style.display = "block";
     }
 
-    article.getElementsByClassName('task__footer__time__text')[0].innerHTML = getTimeLeft(dateInput.value) + " days left";
+    article.getElementsByClassName("task__footer__time__text")[0].innerHTML =
+        getTimeLeft(dateInput.value) + " days left";
 };
 
 setupEvent();
