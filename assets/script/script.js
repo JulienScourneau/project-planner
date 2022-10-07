@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 document.querySelector("#new-date").valueAsDate = new Date();
 let div = document.getElementById("add_task_container");
 let taskList = [];
