@@ -16,5 +16,6 @@ L'app se présente sous forme d'une liste où se retrouveront les différentes t
 - Filtre par status.
 - Trie par nom, Date de fin, Importance.
 - Sauvegarde local des données.
+- Refactor JavaScript.
 
 #### Link: https://julienscourneau.github.io/project-planner/
